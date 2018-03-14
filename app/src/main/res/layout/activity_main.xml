@@ -6,13 +6,97 @@
     android:layout_height="match_parent"
     tools:context="ntk.ambrose.testandroidlabs.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/tvNumber1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:textSize="10pt"
+
+            android:text="Number #1" />
+
+        <TextView
+            android:id="@+id/tvNumber2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvNumber1"
+            android:layout_below="@+id/tvNumber1"
+            android:layout_marginTop="32dp"
+            android:textSize="10pt"
+            android:text="Number #2" />
+
+        <EditText
+            android:id="@+id/etNumber1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvNumber1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Enter first number"/>
+
+        <EditText
+            android:id="@+id/etNumber2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBottom="@+id/tvNumber2"
+
+            android:layout_alignStart="@+id/etNumber1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Enter second number" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:layout_alignTop="@id/tvOp"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="8dp"
+            android:id="@+id/btCalc"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/btCalc"
+            android:textSize="12pt"
+            android:textColor="@color/colorAccent"
+            android:layout_toEndOf="@+id/tvNumber2"
+            android:text="Result"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="8dp"
+            android:id="@+id/tvResult"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvOp"
+            android:layout_alignTop="@id/tvNumber2"
+            android:text="Select Operator"
+            android:textSize="10pt"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="8dp"
+            />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinOp"
+            android:layout_toRightOf="@id/tvOp"
+            android:layout_alignTop="@id/tvOp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            />
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
