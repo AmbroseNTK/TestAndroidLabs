@@ -27,17 +27,24 @@ public class MainActivity extends AppCompatActivity {
         BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KQ.setText(""+Tinh());
+                KQ.setText(String.valueOf(Tinh()));
             }
         });
     }
     void Anhxa ()
+
     {
-        N1=(EditText) findViewById(R.id.etName1);
-        N2=(EditText) findViewById(R.id.etName2);
-        BT=(Button) findViewById(R.id.btKq);
-        KQ=(TextView) findViewById(R.id.tvKq);
-        Spin=(Spinner) findViewById(R.id.spinner);
+
+        N1=findViewById(R.id.etName1);
+
+        N2=findViewById(R.id.etName2);
+
+        BT=findViewById(R.id.btKq);
+
+        KQ=findViewById(R.id.tvKq);
+
+        Spin=findViewById(R.id.spinner);
+
     }
     void TaoSpin()
     {
@@ -66,8 +73,9 @@ public class MainActivity extends AppCompatActivity {
         {
             case 0: z=x1+x2;break;
             case 1: z=x1-x2;break;
-            case 3: z=x1*x2;break;
-            case 4: z=x1/x2;break;
-        }return z;
+            case 2: z=x1*x2;break;
+            case 3: z=x1/x2;break;
+        }
+        return z;
     }
 }
