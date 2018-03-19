@@ -6,13 +6,56 @@
     android:layout_height="match_parent"
     tools:context="ntk.ambrose.testandroidlabs.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textSize="25pt"
+            android:textStyle="bold"
+            android:textColor="#ffffff"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show All"
+            android:layout_alignTop="@id/tvTitle"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btShowAll"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:background="@drawable/button_style1"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:layout_alignTop="@id/btShowAll"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btSearch"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:background="@drawable/button_style1"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pokeball"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:layout_alignTop="@id/btSearch"
+            android:id="@+id/imgPokeball"
+            />
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>
