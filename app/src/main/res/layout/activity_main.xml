@@ -12,8 +12,31 @@
         android:background="#000000"
         android:stretchColumns="*">
         <TableRow
+            android:layout_width="match_parent">
+
+            <TextView
+                android:id="@+id/tvPreNum"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:gravity="right"
+
+                android:textColor="#ffff"
+                android:layout_span="3"
+                />
+            <TextView
+                android:id="@+id/tvOperator"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:gravity="right"
+
+                android:textColor="#ffff"
+                android:layout_span="1"
+                />
+        </TableRow>
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="100dp">
+
             <TextView
                 android:id="@+id/tvResult"
                 android:layout_width="match_parent"
@@ -22,9 +45,21 @@
                 android:gravity="right"
                 android:textColor="#ffffff"
                 android:layout_marginEnd="8dp"
-                android:textDirection="rtl"
+
                 android:layout_span="4"
                 />
+        </TableRow>
+        <TableRow>
+            <Button android:id="@+id/btNeg"
+                android:padding="25dp"
+                android:text="( - )"
+                android:background="#44bd32"
+                />
+            <Button android:id="@+id/btBackspace"
+                android:text="C"
+                android:padding="25dp"
+                android:layout_span="3"
+                android:background="#44bd32"/>
         </TableRow>
         <TableRow>
             <Button android:id="@+id/bt7"

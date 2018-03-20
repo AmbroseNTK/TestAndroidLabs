@@ -2,8 +2,6 @@ package ntk.ambrose.testandroidlabs;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,17 +34,21 @@ public class MainActivity extends AppCompatActivity {
     Button btMC;
     Button btAns;
     Button btDel;
+    Button btBackspace;
+    Button btNeg;
 
     TextView tvResult;
+    TextView tvPreNum;
+    TextView tvOperator;
 
     View.OnClickListener clickOnNumber;
     View.OnClickListener clickOperator;
 
     String currentOperator="";
-
+    String preOperator="";
     double result=0;
     double previousValue=0;
-    boolean hasOperator=false;
+    int operandOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,50 +56,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tvResult=findViewById(R.id.tvResult);
+        tvPreNum=findViewById(R.id.tvPreNum);
+        tvOperator=findViewById(R.id.tvOperator);
+
+        operandOrder=0;
 
         setupButton();
         setupEvent();
 
-        tvResult.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.toString().contains("."))
-                    btFloat.setEnabled(false);
-                else
-                    btFloat.setEnabled(true);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
 
         btFloat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 tvResult.setText(tvResult.getText().toString()+".");
-            }
-        });
-
-        btDel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tvResult.setText("");
-                result = 0;
-                previousValue = 0;
-            }
-        });
-
-        btAns.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tvResult.setText(String.valueOf(result));
             }
         });
 
@@ -119,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
         btFloat=findViewById(R.id.btFloat);
         btAns=findViewById(R.id.btAns);
         btDel=findViewById(R.id.btDel);
+        btNeg=findViewById(R.id.btNeg);
+        btBackspace=findViewById(R.id.btBackspace);
+
     }
 
     public void setupEvent(){
@@ -126,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tvResult.setText(tvResult.getText().toString()+ ((Button)view).getText().toString());
-                hasOperator=false;
+
             }
         };
 
@@ -134,40 +109,44 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try{
-                    if(currentOperator.equals("")){
-                        currentOperator = ((Button)view).getText().toString();
-                        hasOperator=true;
-                        previousValue=Double.parseDouble(tvResult.getText().toString());
-                        tvResult.setText("");
-                    }
-                    else{
-                        if(hasOperator) {
-                            currentOperator = ((Button) view).getText().toString();
-                        }
-                        else{
-                            double currentValue = Double.parseDouble(tvResult.getText().toString());
-                            switch (currentOperator) {
-                                case "+":
-                                    result = previousValue + currentValue;
-                                    break;
-                                case "-":
-                                    result = previousValue - currentValue;
-                                    break;
-                                case "*":
-                                    result = previousValue * currentValue;
-                                    break;
-                                case "/":
-                                    result = previousValue / currentValue;
-                                    break;
-                            }
-                            previousValue=result;
-                            tvResult.setText(String.valueOf(result));
-                            currentOperator="";
-                            hasOperator=false;
-                        }
-                    }
+                    currentOperator=((Button)view).getText().toString();
+                    tvOperator.setText(currentOperator);
+                   if(operandOrder==0){
+                       previousValue = Double.parseDouble(tvResult.getText().toString());
+                       operandOrder++;
+                       tvPreNum.setText(String.valueOf(previousValue));
+                       tvResult.setText("");
+                   }
+                   else if(operandOrder==1){
+
+                       switch (preOperator){
+                           case "+":
+                               result = previousValue + Double.parseDouble(tvResult.getText().toString());
+                               break;
+                           case "-":
+                               result = previousValue - Double.parseDouble(tvResult.getText().toString());
+                               break;
+                           case "*":
+                               result = previousValue * Double.parseDouble(tvResult.getText().toString());
+                               break;
+                           case "/":
+                               result = previousValue / Double.parseDouble(tvResult.getText().toString());
+                               break;
+                       }
+                       tvPreNum.setText(String.valueOf(result));
+                       tvResult.setText("");
+                       operandOrder=0;
+                   }
+                   preOperator=currentOperator;
                 }
                 catch(Exception ex){
+                    previousValue=0;
+                    currentOperator="";
+                    preOperator="";
+                    result=0;
+                    tvResult.setText("");
+                    tvPreNum.setText("");
+                    tvOperator.setText("");
                     Toast.makeText(getBaseContext(),ex.getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
@@ -181,5 +160,59 @@ public class MainActivity extends AppCompatActivity {
         btMul.setOnClickListener(clickOperator);
         btDiv.setOnClickListener(clickOperator);
 
+        btAns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (currentOperator){
+                    case "+":
+                        result = previousValue + Double.parseDouble(tvResult.getText().toString());
+                        break;
+                    case "-":
+                        result = previousValue - Double.parseDouble(tvResult.getText().toString());
+                        break;
+                    case "*":
+                        result = previousValue * Double.parseDouble(tvResult.getText().toString());
+                        break;
+                    case "/":
+                        result = previousValue / Double.parseDouble(tvResult.getText().toString());
+                        break;
+                }
+                operandOrder=0;
+                tvResult.setText(String.valueOf(result));
+                tvPreNum.setText(tvResult.getText());
+                tvOperator.setText("");
+                previousValue=result;
+            }
+        });
+        btDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                previousValue=0;
+                currentOperator="";
+                preOperator="";
+                result=0;
+                tvResult.setText("");
+                tvPreNum.setText("");
+                tvOperator.setText("");
+            }
+        });
+        btNeg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tvResult.getText().toString().equals("")) {
+                    tvResult.setText("-");
+                } else {
+                    tvResult.setText("-" + tvResult.getText().toString());
+                }
+            }
+        });
+        btBackspace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!tvResult.getText().toString().equals("")) {
+                    tvResult.setText(tvResult.getText().toString().substring(0,tvResult.getText().toString().length()-1));
+                }
+            }
+        });
     }
 }
