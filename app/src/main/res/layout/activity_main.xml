@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        >
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/tvTitle"
@@ -19,42 +20,42 @@
             android:layout_marginTop="50dp"
             android:text="@string/app_name"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:textSize="25pt"
-            android:textStyle="bold"
-            android:textColor="#ffffff"/>
+            android:textStyle="bold" />
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Show All"
-            android:layout_alignTop="@id/tvTitle"
-            android:layout_marginTop="100dp"
-            android:layout_centerHorizontal="true"
             android:id="@+id/btShowAll"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp"
-            android:background="@drawable/button_style1"
-            />
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search"
-            android:layout_alignTop="@id/btShowAll"
-            android:layout_marginTop="60dp"
+            android:layout_alignTop="@id/tvTitle"
             android:layout_centerHorizontal="true"
-            android:id="@+id/btSearch"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/button_style1"
-            />
-        <ImageView
+            android:paddingEnd="50dp"
+            android:paddingStart="50dp"
+            android:text="Show All" />
+
+        <Button
+            android:id="@+id/btSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pokeball"
+            android:layout_alignTop="@id/btShowAll"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/button_style1"
+            android:paddingEnd="50dp"
+            android:paddingStart="50dp"
+            android:text="Search" />
+
+        <ImageView
+            android:id="@+id/imgPokeball"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/btSearch"
             android:scaleX="0.6"
             android:scaleY="0.6"
-            android:layout_alignTop="@id/btSearch"
-            android:id="@+id/imgPokeball"
-            />
+            android:src="@drawable/pokeball" />
     </RelativeLayout>
 
 
