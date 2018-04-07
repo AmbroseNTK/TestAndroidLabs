@@ -17,6 +17,10 @@ import android.widget.TextView;
 public class PokemonListAdapter extends ArrayAdapter<PokemonData> {
     private Context context;
     private PokemonData[] pokemonData;
+    public PokemonListAdapter(Context context){
+        super(context,-1);
+        this.context=context;
+    }
     public PokemonListAdapter(Context context, PokemonData[] pokemonData) {
         super(context, -1, pokemonData);
         this.context = context;
@@ -30,7 +34,8 @@ public class PokemonListAdapter extends ArrayAdapter<PokemonData> {
         View row = inflater.inflate(R.layout.listpokemon_layout,parent,false);
         TextView tvPokemonInfo =row.findViewById(R.id.tvPokemonName);
         ImageView imgPokemon = row.findViewById(R.id.imgPokemon);
-
+        int idRes=context.getResources().getIdentifier("pk"+String.valueOf(pokemonData[position].getPokemonID()),"drawable",context.getPackageName());
+        imgPokemon.setImageResource(idRes);
         tvPokemonInfo.setText(pokemonData[position].getPokemonID()+"\n"+pokemonData[position].getPokemonName());
         return row;
     }

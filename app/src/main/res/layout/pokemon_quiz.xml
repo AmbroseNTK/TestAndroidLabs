@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".QuizActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem Ipsum"
+        android:textSize="12pt"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvQuestion"
+        android:layout_alignLeft="@id/tvQuestion"
+        android:layout_marginTop="20dp">
+        <RadioButton
+            android:layout_marginTop="15dp"
+            android:id="@+id/ansA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum 1"
+            android:textSize="15dp"/>
+        <RadioButton
+            android:id="@+id/ansB"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum 1"
+            android:textSize="15dp"/>
+        <RadioButton
+            android:id="@+id/ansC"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum 1"
+            android:textSize="15dp"/>
+        <RadioButton
+            android:id="@+id/ansD"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum 1"
+            android:textSize="15dp"/>
+    </RadioGroup>
+    <Button
+        android:id="@+id/btPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="<- Previous"
+        android:background="@drawable/button_style1"
+        android:layout_below="@id/radioGroup"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="50dp"/>
+    <Button
+        android:id="@+id/btNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next ->"
+        android:background="@drawable/button_style1"
+        android:layout_below="@id/radioGroup"
+        android:layout_toEndOf="@id/btPrevious"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="50dp"/>
+</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
